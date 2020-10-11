@@ -1,5 +1,5 @@
 ---
-title: "Variational AutoEncoders - A Mathematical Perspective"
+title: ""
 date: 2020-10-12
 tags: [Variational Inference, Variational AutoEncoders, AutoEncoders]
 #header:
