@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "Sumanyu Garg"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/Images/AI.jpg"
   bio              : "Looking for Full Time Opportunities in Machine Learning/Deep Learning/ Reinforcement Learning."
   location         : "San Jose, California"
   email            : "sumgarg@iu.edu"
