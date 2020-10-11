@@ -119,11 +119,11 @@ D_{KL}(q(Z)||P(Z/X)) =\; & \int q(z)log(\frac{P(Z/X)}{q(Z)})\\
 =\;&\; \int q(z) log(\frac{p(X,Z)}{q(Z)}) - log(P(X))
 \end{split}
 \end{equation}
-$$
-On rearranging the terms, we get the following expression.
+$$<br>
+On rearranging the terms, we get the following expression.<br>
 $$
 log(P(X)) = D_{KL}(q(Z) || P(Z/X)) + \int q(z)log(\frac{P(X,Z)}{q(Z)})
-$$
+$$<br>
 Now, $log(P(X))$ is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $KL(q(Z)||P(Z/X))$, we can instead maximize the second term in the above expression i.e. $\int q(z)log(\frac{P(X,Z)}{q(Z)})$. Since $KL$ is always positive, therefore,
 $$
 \int q(z)log(\frac{P(X,Z)}{q(Z)})\leq log(P(X))
