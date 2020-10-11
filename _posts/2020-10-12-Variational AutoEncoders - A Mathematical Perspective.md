@@ -2,8 +2,8 @@
 title: "Variational AutoEncoders - A Mathematical Perspective"
 date: 2020-10-12
 tags: [Variational Inference, Variational AutoEncoders, AutoEncoders]
-header:
-  image: "/Images/"AI.jpg"
+#header:
+  #image: "/Images/"AI.jpg"
 excerpt: "VAE" 
 mathjax: "true"
 ---
