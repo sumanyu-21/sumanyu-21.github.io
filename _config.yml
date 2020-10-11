@@ -21,9 +21,9 @@ title_separator          : "-"
 subtitle                 : "AI Researcher"
 name                     : "Sumanyu Garg"
 description              : "My Artificial Intelligence Portfolio."
-url                      : "https://sumanyu-21.github.io"
+url                      : #"https://sumanyu-21.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "sumanyu-21/sumanyu-21.github.io"
+repository               : #"sumanyu-21/sumanyu-21.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -96,7 +96,7 @@ author:
   name             : "Sumanyu Garg"
   avatar           : "/Images/AI.jpg"
   bio              : "Looking for Full Time Opportunities in Machine Learning/Deep Learning/ Reinforcement Learning."
-  location         : "San Jose, California"
+  location         : "San Jose, CA"
   email            : "sumgarg@iu.edu"
   links:
     - label: "Email"
@@ -104,7 +104,7 @@ author:
       url: "sumgarg@iu.edu"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://sumanyu-21/sumanyu-21.github.io"
+      url: "https://sumanyu-21.github.io"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -287,8 +287,5 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: #true
-      comments: #true
-      share: true
-      related: #true
+      
 
