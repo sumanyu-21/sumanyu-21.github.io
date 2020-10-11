@@ -10,6 +10,8 @@ mathjax: "true"
 
 
 
+
+
 [TOC]
 
 # Variational Autoencoders: A Mathematical Perspective.
