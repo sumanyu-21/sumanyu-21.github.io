@@ -96,7 +96,7 @@ author:
   name             : "Sumanyu Garg"
   avatar           : "/Images/AI.jpg"
   bio              : "Looking for Full Time Opportunities in Machine Learning/Deep Learning/ Reinforcement Learning."
-  location         : "San Jose, California"
+  location         : "San Jose, CA"
   email            : "sumgarg@iu.edu"
   links:
     - label: "Email"
@@ -287,8 +287,8 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: #true
-      comments: #true
-      share: true
-      related: #true
+      #read_time: #true
+      #comments: #true
+      #share: true
+      #related: #true
 
