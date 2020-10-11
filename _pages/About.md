@@ -1,8 +1,8 @@
 ---
-title:"About"
-permalink:/About/
+title: "About"
+permalink: /About/
 header:
-	image:"/Images/AI.jpg"
+	image: "/Images/AI.jpg"
 ---
 	
-I am a student at Indiana University
+I am a student at Indiana University.
