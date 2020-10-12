@@ -94,19 +94,11 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 *(Note: I will discuss about MCMC and Variational Inference in more details in another post.)*
 
 Let's discuss the variational inference approach in some more detail.
-<<<<<<< HEAD
 We want to find out an approximate distribution $$q(Z)$$ which is as similar to $$P(Z/X)$$. One way to measure the similarity between $$q(z)$$ and $$P(Z/X)$$ is to minimize the $$KL Divergence$$ between these 2 distributions.
 Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q||P)$$ and not $$KL(P||q)$$?
 
 Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q||P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P||q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
 Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
-=======
-We want to find out an approximate distribution $q(Z)$ which is as similar to $P(Z/X)$. One way to measure the similarity between $q(z)$ and $P(Z/X)$ is to minimize the $KL Divergence$ between these 2 distributions.
-Note: We minimize $KL(q(Z)||P(Z/X))$ and not $KL(P(Z/X)||q(Z))$. Since $KL Divergence$ is asymmetric, the 2 approaches will result in different $q(z)$. Then why do we choose to minimize $KL(q||P)$ and not $KL(P||q)$?<br>
-
-Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $Q$ , then $q(Z)$ will be a unimodal distribution. Now, when we try to minimize $KL(q||P)$, then the resultant $q(Z)$ will be  a distribution which approximates one mode of $P(Z/X)$ very well however not the others. In case, we minimize $KL(P||q)$, then the resultant $q(z)$ will span across different modes of $P(Z/X)$. When $P(Z/X)$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $q(Z)$). <br>
-Therefore, we try to minimize $KL(q||P)$ and not the other way around.
->>>>>>> fdf51259dcfa592a685882c382e33bb3ab41e149
 
 <center><img height = 250 src="\Images\KL.png"></center>
 
