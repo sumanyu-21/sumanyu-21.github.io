@@ -140,7 +140,9 @@ $$
 Now,  $$log(P(X))$$  is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)||P(Z/X))$$ , we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ . Since $$KL$$ is always positive, therefore,
 
 $$
+\begin{equation}
 \int q(z)log(\frac{P(X,Z)}{q(Z)})\leq log(P(X))
+\end{equation}
 $$
 
 
