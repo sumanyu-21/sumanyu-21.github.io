@@ -37,12 +37,15 @@ body {
 
 .page {
   @include breakpoint($large) {
-      padding-right: 0;
-    }
+    float: right;
+    width: calc(100% - #{$right-sidebar-width-narrow});
+    padding-right: 0;
+  }
 
-    @include breakpoint($x-large) {
-      padding-right: 0;
-    }
+  @include breakpoint($x-large) {
+    width: calc(100% - #{$right-sidebar-width});
+    padding-right: 0;
+  }
 
   .page__inner-wrap {
     float: left;
@@ -508,13 +511,16 @@ body {
   padding-top: 1em;
   border-top: 1px solid $border-color;
 
-   @include breakpoint($large) {
-      padding-right: 0;
-    }
+  @include breakpoint($large) {
+    float: right;
+    width: calc(100% - #{$right-sidebar-width-narrow});
+	padding-right: 0;
+  }
 
-    @include breakpoint($x-large) {
-      padding-right: 0;
-    }
+  @include breakpoint($x-large) {
+    width: calc(100% - #{$right-sidebar-width});
+	padding-right: 0;
+  }
 
   a {
     color: inherit;
