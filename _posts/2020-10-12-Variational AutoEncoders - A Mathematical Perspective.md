@@ -40,7 +40,7 @@ One can note that in an ideal situation, $${f(z) = {g^{-1}(x)}}$$
 
 These functions are not some arbitrary functions and will depend on the kind of data we are dealing with. Therefore, we use neural networks to approximate $$g(x)$$ as $${g_\phi(x)}$$ and $${f(z)}$$ as  $${f_\theta(z)}$$ where $$\phi$$ and $$\theta$$ will be parameters of our encoder and decoder networks respectively. However, when we use a function approximator like neural network for approximation, $${f_\theta(z)}$$ will not be exactly equal to  $${g_\phi^{-1}(x)}$$. Hence the output of the decoder will be an approximate vector $${x^{'}}$$  in the original space which will be very similar to $${x}$$.
 
-Our objective will be to make these 2 vectors as identical to each other as possible. Therefore our optimal functions $${g_\phi(x)}$$ and $${f_\theta(z)}$$  will be those which minimizes the distance between these 2 vectors. <br>
+Our objective will be to make these 2 vectors as identical to each other as possible. Therefore our optimal functions $${g_\phi(x)}$$ and $${f_\theta(z)}$$  will be those which minimizes the distance between these 2 vectors. 
 
 
 
@@ -56,9 +56,7 @@ $$
 $$
 
 
-<br>
-Once, we have trained our autoencoder network to find optimal weights $${\phi^{*}}$$ and $${\theta^*}$$, we can encode a new data point in the same latent space 
-and can also be recovered back in original space.
+Once, we have trained our autoencoder network to find optimal weights $${\phi^{*}}$$ and $${\theta^*}$$, we can encode a new data point in the same latent space and can also be recovered back in original space.
 
 ## 3) Limitations of AutoEncoders
 
@@ -103,6 +101,13 @@ We want to find out an approximate distribution $${q(Z)}$$ which is as similar t
 Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q||P)$$ and not $$KL(P||q)$$ ?
 
 
+
+Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q||P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P||q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
+
+Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
+
+
+
 <center><img height = 250 src="\Images\KL.png"></center>
 
 
@@ -111,7 +116,8 @@ Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL 
 
 We want to minimize the $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
 
-$$\DeclareMathOperator{\E}{\mathbb{E}}
+$$
+\DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
 D_{KL}(q(Z)||P(Z/X)) =\; & \int q(z)log(\frac{P(Z/X)}{q(Z)})\\
@@ -119,21 +125,23 @@ D_{KL}(q(Z)||P(Z/X)) =\; & \int q(z)log(\frac{P(Z/X)}{q(Z)})\\
 =\;&  \int q(z) log(\frac{p(X,Z)}{q(Z)}) - \int q(z)log(P(X))\\
 =\;&\; \int q(z) log(\frac{p(X,Z)}{q(Z)}) - log(P(X))
 \end{split}
-\end{equation}$$
-
-<br>On rearranging the terms, we get the following expression.<br><br>
-
-$$\begin{equation}
+\end{equation}
+$$
+On rearranging the terms, we get the following expression.
+$$
+\begin{equation}
 log(P(X)) = D_{KL}(q(Z) || P(Z/X)) + \int q(z)log(\frac{P(X,Z)}{q(Z)})
-\end{equation}$$<br><br>
-
+\end{equation}
+$$
 Now, $$log(P(X))$$ is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)||P(Z/X))$$, we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$. Since $$KL$$ is always positive, therefore,
 $$
 \int q(z)log(\frac{P(X,Z)}{q(Z)})\leq log(P(X))
-$$.
-Now this term is called the Variational Lower Bound/Evidence Lower Bound on  $P(X)$. We can rewrite the variational lower bound as follows:<br><br>
+$$
 
-$$\DeclareMathOperator{\E}{\mathbb{E}}
+
+Now this term is called the Variational Lower Bound/Evidence Lower Bound on  $P(X)$. We can rewrite the variational lower bound as follows:
+$$
+\DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
 L(q) =\; & \int q(z)log(\frac{P(X,Z)}{q(Z)})\\
@@ -141,19 +149,20 @@ L(q) =\; & \int q(z)log(\frac{P(X,Z)}{q(Z)})\\
 =\;&  \int q(z) log(p(X/Z)) + \int q(z)log(\frac{P(Z)}{q(Z)})\\
 =\;&\; \E_{z\sim P(Z)}log(P(X/Z)) - KL(q(Z)||P(Z))
 \end{split}
-\end{equation}$$
-<br><br>
+\end{equation}
+$$
 
+Our objective has now changed  to maximizing the variational lower bound $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ with respect to $$q(z)$$.
 
-Our objective has now changed  to maximizing the variational lower bound $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ with respect to $$q(z)$$.<br>
-
-
-$$\begin{equation}
+$$
+\begin{equation}
 \begin{split}
 Objective & =  \underset{q}{max}\; \int q(z)log(\frac{P(X,Z)}{q(Z)})\\
 & = \underset{q}{max}\; \E_{z\sim P(Z)}log(P(X/Z)) - KL(q(Z)||P(Z))
 \end{split}
-\end{equation}$$<br>
+\end{equation}
+$$
+
 
 We have now finally derived the equation which we need to maximize in order to get the best lower bound on $$P(Z/X)$$. Maximizing this lower bound will make $$q(Z)$$ as similar to posterior $$P(Z/X)$$.
 
@@ -171,7 +180,7 @@ Neural Network at its core is function approximators and probability distributio
 
 1. In general, we know what  $$P(Z)\;\text{and}\; P(X/Z)$$ are. Let $$P(Z)$$ be a $$\text {normal distribution}$$ with $$mean=0\;and\; variance=1$$. (Choosing $$P(Z)$$ and $$Q(Z/X)$$ to be a $$\text {normal distributions}$$, allows us to solve $$KLDivergence$$ term i.e. ($$KL(q(Z)||P(Z)$$) in closed form, though we could have chosen some other distribution as well.)
 
-2. Similarly, we can choose P(X/Z) to be anything. However, people generally use $$P(X/Z)$$ to be a $$normal$$ or $$multinoulli$$ distribution.<br>
+2. Similarly, we can choose $$P(X/Z)$$ to be anything. However, people generally use $$P(X/Z)$$ to be a $$normal$$ or $$multinoulli$$ distribution.
 
    
 
@@ -199,19 +208,23 @@ Now, we have understood how variational autoencoders work. However, the objectiv
 
 The VAE objective function can be written as follows:
 
-$$\DeclareMathOperator{\E}{\mathbb{E}}
+$$
+\DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
 L(\phi, \theta) & = \underset{\theta, \phi}{max}\; \E_{z\sim q_\theta(Z/x)}log(P_\theta(X/Z)) - D_{KL}(q_\phi(Z/x) || P(Z))\\
 & = \underset{\theta, \phi}{min}\; -\E_{z\sim q_\theta(Z/x)}log(P_\theta(X/Z)) + D_{KL}(q_\phi(Z/x) || P(Z))
 \end{split}
-\end{equation}$$
+\end{equation}
+$$
+
 
 Here, the first term is called the reconstruction loss and the second term acts as a regularizer.
 
 - Let's first look at the $$Kl Divergence$$ term.                                                                                                                                                                
 
-$$\DeclareMathOperator{\E}{\mathbb{E}}
+$$
+\DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
 &\; D_{KL}(q_\phi(Z/x) || P(Z))\\
@@ -220,13 +233,17 @@ $$\DeclareMathOperator{\E}{\mathbb{E}}
 =&\;\frac{1}{2}[\sum_{d}\Sigma_\phi(x) + \sum_{d}\mu_\phi^{2}(x)-\sum_{d}1-\sum_{d}log(\Sigma_\phi(x)]\\
 =&\;\frac{1}{2}[\sum_{d}\Sigma_\phi(x) +\mu_\phi^2(x)-1-log(\Sigma_\phi(x))]
 \end{split}
-\end{equation}$$
+\end{equation}
+$$
+
+
 
 We have now simplified the $$KlDivergence$$ term in our objective function. We can now easily take derivatives with respect to $$\phi$$ ,the weights of the encoder neural network. It is important to note here that the $$KL Divergence$$ term is only dependent on the weights of &nbsp;&nbsp;&nbsp;the encoder network and not the decoder network.
 
 - Let's now simplify the reconstruction loss term. Here, I have assumed that $$P_\theta(X/Z)$$ follows a $$\text{normal distribution}$$ with $$mean$$$ $$f_\theta(z)$$ determined by the decoder network and $$variance$$ equal to 1.
 
-$$\DeclareMathOperator{\E}{\mathbb{E}}
+$$
+\DeclareMathOperator{\E}{\mathbb{E}}
   \begin{equation}
   \begin{split}
   & -\E_{z\sim q_\phi(Z/x)}log(P_\theta(X/Z))\\
@@ -235,11 +252,10 @@ $$\DeclareMathOperator{\E}{\mathbb{E}}
   &\text{where}\;\; z^{i}=\mu + \sigma\odot\epsilon^{i} \\
   &\text{and} \;\;\;\;\;\epsilon^{i}\sim N(0,I)
   \end{split}
-  \end{equation}$$
+  \end{equation}
+$$
 
-  Since we cannot calculate expectation, we approximated it using Monte Carlo Samples.
-
-  Now, we can easily take derivatives of this term with respect to $$\theta$$, weights of the decoder neural network. Again, we can note that this time the reconstruction loss term is only dependent on the encoder and not the decoder.
+Since we cannot calculate expectation, we approximated it using Monte Carlo Samples. Now, we can easily take derivatives of this term with respect to $$\theta$$, weights of the decoder neural network. Again, we can note that this time the reconstruction loss term is only dependent on the encoder and not the decoder.
 
 ## 8) Results
 
