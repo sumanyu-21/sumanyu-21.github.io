@@ -100,7 +100,7 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 1. Markov Chain Monte Carlo (MCMC) - MCMC approach generates samples from the unnormalized $$P(Z/X)$$ which in turn makes the samples unbiased. However, we need a lot of samples to approximate $$P(Z/X)$$.
 2. Variational Inference - Variational Inference approach approximates $$P(Z/X)$$ using another distribution $$q(z)$$ where $$q(z)$$ belongs to some set of distributions $$Q$$. This approach results in biased samples. However it is much faster and scalable to highly complex distributions $$P(Z/X)$$.
 
-<center><img height = 250 src="Images\VAE\MCMCvsVI.png"></center>
+<center><img src="Images/VAE/MCMCvsVI.PNG"></center>
 
 *(Note: I will discuss about MCMC and Variational Inference in more details in another post.)*
 
