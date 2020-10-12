@@ -116,7 +116,7 @@ Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
 
 Hello My name is Sumanyu. 
 
-We want to minimize the $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
+We want to minimize the  $$KL(q(Z)P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
 
 
 
