@@ -68,7 +68,7 @@ The encoder network just maps each vector $${x}$$​ to some location in latent 
 
 
 
-<center><img src="\Images\Discontinuous Manifold.png"></center>
+<center><img height = 250 src=""{{ site.url }}{{ site.baseurl }}\Images\Discontinuous Manifold.png"></center>
 
 
 
@@ -88,7 +88,7 @@ In order to understand the variational autoencoders in depth, we will begin with
 
 Consider the following setup with 2 random variables $$z(hidden)$$ and $$x(observed)$$ where $$z$$ influences the outcome $$x$$. A common problem in Bayesian Networks or probabilistic graphical models is to infer the posterior distribution of latent variable z. 
 
-<center><img src="\Images\Basic PGM.png"></center>
+<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}\Images\Basic PGM.png"></center>
 
 
 $$
@@ -100,7 +100,7 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 1. Markov Chain Monte Carlo (MCMC) - MCMC approach generates samples from the unnormalized $$P(Z/X)$$ which in turn makes the samples unbiased. However, we need a lot of samples to approximate $$P(Z/X)$$.
 2. Variational Inference - Variational Inference approach approximates $$P(Z/X)$$ using another distribution $$q(z)$$ where $$q(z)$$ belongs to some set of distributions $$Q$$. This approach results in biased samples. However it is much faster and scalable to highly complex distributions $$P(Z/X)$$.
 
-<center><img height = 250 src="\Images\MCMCvsVI.png"></center>
+<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}\Images\MCMCvsVI.png"></center>
 
 *(Note: I will discuss about MCMC and Variational Inference in more details in another post.)*
 
@@ -282,7 +282,7 @@ $$
   \begin{split}
   & -\E_{z\sim q_\phi(Z/x)}log(P_\theta(X/Z))\\
   =\;&-\E_{z\sim q_\phi(Z/x)}[-\frac{d}{2}log(2\pi) - \frac{1}{2}\|x-f_\theta(z)]\\
-  \approx\;& \frac{d}{2}log(2\pi)+\frac{1}{2N}\sum_{i=1}^{N}\|x-f_\theta(z^{i})\|\;\;\;\text{(Monte Carlo Approximationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn)}\\
+  \approx\;& \frac{d}{2}log(2\pi)+\frac{1}{2N}\sum_{i=1}^{N}\|x-f_\theta(z^{i})\|\;\;\;\text{(Monte Carlo Approximation)}\\
   &\text{where}\;\; z^{i}=\mu + \sigma\odot\epsilon^{i} \\
   &\text{and} \;\;\;\;\;\epsilon^{i}\sim N(0,I)
   \end{split}
