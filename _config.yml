@@ -277,8 +277,8 @@ defaults:
       type: posts
     values:
       layout: single
-      #author_profile: true
-      class: wide
+      author_profile: true
+      classes: wide
       read_time: true
       comments: true
       share: true
@@ -290,7 +290,7 @@ defaults:
       type: pages
     values:
       layout: single
-      class: wide
+      classes: wide
       author_profile: true
      
 
