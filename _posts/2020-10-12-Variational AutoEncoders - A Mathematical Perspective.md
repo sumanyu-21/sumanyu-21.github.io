@@ -68,7 +68,7 @@ The encoder network just maps each vector $${x}$$​ to some location in latent 
 
 
 
-<center><img src="{{ site.url }}{{ site.baseurl }}/Images/VAE/Discontinuous Manifold.png"></center>
+<center><img src="{{ site.url }}{{ site.baseurl }}/Images/VAE/Discontinuous Manifold.PNG"></center>
 
 
 
