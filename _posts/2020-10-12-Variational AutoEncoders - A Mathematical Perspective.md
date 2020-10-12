@@ -49,8 +49,8 @@ $$
 \begin{equation}
 \begin{split}
 \phi^{*}, \theta^{*} 
-& = min_{\theta,\phi}\sum_{i=1}^{i=N}{||f_\theta(g_\phi(x^{(i)}))-x^{(i)}||^2}\\
-& = min_{\theta,\phi}\sum_{i=1}^{i=N}{||x^{'(i)}-x^{(i)}||^2}
+& = min_{\theta,\phi}\sum_{i=1}^{i=N}{\|f_\theta(g_\phi(x^{(i)}))-x^{(i)}\|^2}\\
+& = min_{\theta,\phi}\sum_{i=1}^{i=N}{\|x^{'(i)}-x^{(i)}\|^2}
 \end{split}
 \end{equation}
 $$
@@ -98,15 +98,15 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 
 Let's discuss the variational inference approach in some more detail.
 We want to find out an approximate distribution $${q(Z)}$$ which is as similar to $$P(Z/X)$$. One way to measure the similarity between $$q(z)$$ and $$P(Z/X)$$ is to minimize the $$KL Divergence$$ between these 2 distributions.
-Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q||P)$$ and not $$KL(P||q)$$ ?
+Note: We minimize $$KL(q(Z)\|P(Z/X))$$ and not $$KL(P(Z/X)\|q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q\|P)$$ and not $$KL(P\|q)$$ ?
 
 
 
 Hello My name is Sumanyu. 
 
-Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q||P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P||q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
+Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q\|P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P\|q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
 
-Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
+Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
@@ -124,7 +124,7 @@ $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
-D_{KL}(q(Z)||P(Z/X)) =\; & \int q(z)log(\frac{P(Z/X)}{q(Z)})\\
+D_{KL}(q(Z)\|P(Z/X)) =\; & \int q(z)log(\frac{P(Z/X)}{q(Z)})\\
 =\;&  \int q(z)log(\frac{P(X,Z)}{P(X)q(Z)})\\
 =\;&  \int q(z) log(\frac{p(X,Z)}{q(Z)}) - \int q(z)log(P(X))\\
 =\;&\; \int q(z) log(\frac{p(X,Z)}{q(Z)}) - log(P(X))
@@ -136,14 +136,14 @@ On rearranging the terms, we get the following expression,
 
 $$
 \begin{equation}
-log(P(X)) = D_{KL}(q(Z) || P(Z/X)) + \int q(z)log(\frac{P(X,Z)}{q(Z)})
+log(P(X)) = D_{KL}(q(Z) \| P(Z/X)) + \int q(z)log(\frac{P(X,Z)}{q(Z)})
 \end{equation}
 $$
 
 
 
 
-Now,  $$log(P(X))$$  is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)||P(Z/X))$$ , we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ . Since $$KL$$ is always positive, therefore,
+Now,  $$log(P(X))$$  is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)\|P(Z/X))$$ , we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ . Since $$KL$$ is always positive, therefore,
 $$
 \begin{equation}
 \int q(z)log(\frac{P(X,Z)}{q(Z)})\leq log(P(X))
@@ -160,7 +160,7 @@ $$
 L(q) =\; & \int q(z)log(\frac{P(X,Z)}{q(Z)})\\
 =\;&  \int q(z)log(\frac{P(X/Z)P(Z)}{q(Z)})\\
 =\;&  \int q(z) log(p(X/Z)) + \int q(z)log(\frac{P(Z)}{q(Z)})\\
-=\;&\; \E_{z\sim P(Z)}log(P(X/Z)) - KL(q(Z)||P(Z))
+=\;&\; \E_{z\sim P(Z)}log(P(X/Z)) - KL(q(Z)\|P(Z))
 \end{split}
 \end{equation}
 $$
@@ -172,7 +172,7 @@ $$
 \begin{equation}
 \begin{split}
 Objective & =  \underset{q}{max}\; \int q(z)log(\frac{P(X,Z)}{q(Z)})\\
-& = \underset{q}{max}\; \E_{z\sim P(Z)}log(P(X/Z)) - KL(q(Z)||P(Z))
+& = \underset{q}{max}\; \E_{z\sim P(Z)}log(P(X/Z)) - KL(q(Z)\|P(Z))
 \end{split}
 \end{equation}
 $$
@@ -193,7 +193,7 @@ Since, we have discussed above that inferring true posterior is intractable, we 
 Now where does the neural network part comes in?
 Neural Network at its core is function approximators and probability distributions are basically functions of random variables(with some constraints), therefore we can use Neural Networks to approximate these probability distributions by approximating the parameters of the distributions.
 
-1. In general, we know what  $$P(Z)\;\text{and}\; P(X/Z)$$ are. Let $$P(Z)$$ be a $$\text {normal distribution}$$ with $$mean=0\;and\; variance=1$$. (Choosing $$P(Z)$$ and $$Q(Z/X)$$ to be a $$\text {normal distributions}$$, allows us to solve $$KLDivergence$$ term i.e. ($$KL(q(Z)||P(Z)$$) in closed form, though we could have chosen some other distribution as well.)
+1. In general, we know what  $$P(Z)\;\text{and}\; P(X/Z)$$ are. Let $$P(Z)$$ be a $$\text {normal distribution}$$ with $$mean=0\;and\; variance=1$$. (Choosing $$P(Z)$$ and $$Q(Z/X)$$ to be a $$\text {normal distributions}$$, allows us to solve $$KLDivergence$$ term i.e. ($$KL(q(Z)\|P(Z)$$) in closed form, though we could have chosen some other distribution as well.)
 
 2. Similarly, we can choose $$P(X/Z)$$ to be anything. However, people generally use $$P(X/Z)$$ to be a $$normal$$ or $$multinoulli$$ distribution.
 
@@ -227,8 +227,8 @@ $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
-L(\phi, \theta) & = \underset{\theta, \phi}{max}\; \E_{z\sim q_\theta(Z/x)}log(P_\theta(X/Z)) - D_{KL}(q_\phi(Z/x) || P(Z))\\
-& = \underset{\theta, \phi}{min}\; -\E_{z\sim q_\theta(Z/x)}log(P_\theta(X/Z)) + D_{KL}(q_\phi(Z/x) || P(Z))
+L(\phi, \theta) & = \underset{\theta, \phi}{max}\; \E_{z\sim q_\theta(Z/x)}log(P_\theta(X/Z)) - D_{KL}(q_\phi(Z/x) \| P(Z))\\
+& = \underset{\theta, \phi}{min}\; -\E_{z\sim q_\theta(Z/x)}log(P_\theta(X/Z)) + D_{KL}(q_\phi(Z/x) \| P(Z))
 \end{split}
 \end{equation}
 $$
@@ -242,8 +242,8 @@ $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
-&\; D_{KL}(q_\phi(Z/x) || P(Z))\\
-=&\;D_{KL}(N(\mu(x),\Sigma(x)) \;\;||\;\;N(0,I))\\
+&\; D_{KL}(q_\phi(Z/x) \| P(Z))\\
+=&\;D_{KL}(N(\mu(x),\Sigma(x)) \;\;\|\;\;N(0,I))\\
 =&\;\frac{1}{2}[tr(\Sigma_\phi(x))+ \mu_\phi(x)^T\mu_\phi(x)-d-log|\Sigma_\phi(x)]\\
 =&\;\frac{1}{2}[\sum_{d}\Sigma_\phi(x) + \sum_{d}\mu_\phi^{2}(x)-\sum_{d}1-\sum_{d}log(\Sigma_\phi(x)]\\
 =&\;\frac{1}{2}[\sum_{d}\Sigma_\phi(x) +\mu_\phi^2(x)-1-log(\Sigma_\phi(x))]
@@ -262,8 +262,8 @@ $$
   \begin{equation}
   \begin{split}
   & -\E_{z\sim q_\phi(Z/x)}log(P_\theta(X/Z))\\
-  =\;&-\E_{z\sim q_\phi(Z/x)}[-\frac{d}{2}log(2\pi) - \frac{1}{2}||x-f_\theta(z)]\\
-  \approx\;& \frac{d}{2}log(2\pi)+\frac{1}{2N}\sum_{i=1}^{N}||x-f_\theta(z^{i})||\;\;\;\text{(Monte Carlo Approximation)}\\
+  =\;&-\E_{z\sim q_\phi(Z/x)}[-\frac{d}{2}log(2\pi) - \frac{1}{2}\|x-f_\theta(z)]\\
+  \approx\;& \frac{d}{2}log(2\pi)+\frac{1}{2N}\sum_{i=1}^{N}\|x-f_\theta(z^{i})\|\;\;\;\text{(Monte Carlo Approximation)}\\
   &\text{where}\;\; z^{i}=\mu + \sigma\odot\epsilon^{i} \\
   &\text{and} \;\;\;\;\;\epsilon^{i}\sim N(0,I)
   \end{split}
