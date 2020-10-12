@@ -282,7 +282,7 @@ $$
   \begin{split}
   & -\E_{z\sim q_\phi(Z/x)}log(P_\theta(X/Z))\\
   =\;&-\E_{z\sim q_\phi(Z/x)}[-\frac{d}{2}log(2\pi) - \frac{1}{2}\|x-f_\theta(z)]\\
-  \approx\;& \frac{d}{2}log(2\pi)+\frac{1}{2N}\sum_{i=1}^{N}\|x-f_\theta(z^{i})\|\;\;\;\text{(Monte Carlo Approximation)}\\
+  \approx\;& \frac{d}{2}log(2\pi)+\frac{1}{2N}\sum_{i=1}^{N}\|x-f_\theta(z^{i})\|\;\;\;\text{(Monte Carlo Approximationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn)}\\
   &\text{where}\;\; z^{i}=\mu + \sigma\odot\epsilon^{i} \\
   &\text{and} \;\;\;\;\;\epsilon^{i}\sim N(0,I)
   \end{split}
