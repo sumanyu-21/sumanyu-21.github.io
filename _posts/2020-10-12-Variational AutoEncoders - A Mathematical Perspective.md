@@ -27,7 +27,7 @@ Standard Autoencoders were designed for compressing the data into a smaller dime
 <h3>
 <center>AutoEncoder Architecture</center>
 </h3>
-<center><img src="https://lilianweng.github.io/lil-log/assets/images/autoencoder-architecture.png" height="250"/></center>
+<center><img src="https://lilianweng.github.io/lil-log/assets/images/autoencoder-architecture.png" height="50" /></center>
 
 
 
