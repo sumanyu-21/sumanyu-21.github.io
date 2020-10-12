@@ -68,7 +68,7 @@ The encoder network just maps each vector $${x}$$​ to some location in latent 
 
 
 
-<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}\Images\Discontinuous Manifold.png"></center>
+<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}/Images/Discontinuous Manifold.png"></center>
 
 
 
@@ -88,7 +88,7 @@ In order to understand the variational autoencoders in depth, we will begin with
 
 Consider the following setup with 2 random variables $$z(hidden)$$ and $$x(observed)$$ where $$z$$ influences the outcome $$x$$. A common problem in Bayesian Networks or probabilistic graphical models is to infer the posterior distribution of latent variable z. 
 
-<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}\Images\Basic PGM.png"></center>
+<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}/Images/Basic PGM.png"></center>
 
 
 $$
