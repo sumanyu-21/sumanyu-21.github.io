@@ -61,7 +61,12 @@ Once, we have trained our autoencoder network to find optimal weights $${\phi^{*
 ## 3) Limitations of AutoEncoders
 
 The primary purpose of autoencoders is to compress a given vector to a lower dimensional hidden space in an unsupervised manner while preserving much of the information contained.
-However, if we take any arbitrary vector from the hidden space and try to decode it using the decoder, then most likely we will simply be generating a noise. This is because the manifold mapping found out by the encoder network is not smooth *(Note: Our optimization problem had no constraint to keep the hidden manifold smooth or continuous)*. The encoder network just maps each vector {x}​ to some location in latent space. Below figure shows the 2 dimensional latent space for MNIST Dataset. We can see that transition between different regions in the space is not continuous. Therefore, when we sample a random point from this hidden space, it will most likely correspond to a noisy point in original space.
+
+However, if we take any arbitrary vector from the hidden space and try to decode it using the decoder, then most likely we will simply be generating a noise. This is because the manifold mapping found out by the encoder network is not smooth *(Note: Our optimization problem had no constraint to keep the hidden manifold smooth or continuous)*. 
+
+The encoder network just maps each vector $${x}$$​ to some location in latent space. Below figure shows the 2 dimensional latent space for MNIST Dataset. We can see that transition between different regions in the space is not continuous. Therefore, when we sample a random point from this hidden space, it will most likely correspond to a noisy point in original space.
+
+
 
 <center><img src="\Images\Discontinuous Manifold.png"></center>
 
@@ -70,7 +75,10 @@ However, if we take any arbitrary vector from the hidden space and try to decode
 
 
 How can we obtain a meaningful representation out of an arbitrary point sampled from hidden space?
+
 Here comes the use of Variational Encoders. In next section, we will discuss how Variational Autoencoders solve the problem of discontinuous manifold mapping to a continuous mapping so that when we sample a random point from hidden space, we generate a meaningful data point in the original space.
+
+
 
 ## 4) Building Blocks Towards Understanding VAE
 
@@ -98,11 +106,8 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 
 Let's discuss the variational inference approach in some more detail.
 We want to find out an approximate distribution $${q(Z)}$$ which is as similar to $$P(Z/X)$$. One way to measure the similarity between $$q(z)$$ and $$P(Z/X)$$ is to minimize the $$KL Divergence$$ between these 2 distributions.
+
 Note: We minimize $$KL(q(Z)\|P(Z/X))$$ and not $$KL(P(Z/X)\|q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q\|P)$$ and not $$KL(P\|q)$$ ?
-
-
-
-Hello My name is Sumanyu. 
 
 Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q\|P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P\|q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
 
@@ -114,7 +119,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
 
-Hello My name is Sumanyu. 
+
 
 We want to minimize the  $$KL(q(Z)\|P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
 
@@ -142,8 +147,9 @@ $$
 
 
 
-
 Now,  $$log(P(X))$$  is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)\|P(Z/X))$$ , we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ . Since $$KL$$ is always positive, therefore,
+
+
 $$
 \begin{equation}
 \int q(z)log(\frac{P(X,Z)}{q(Z)})\leq log(P(X))
@@ -151,7 +157,9 @@ $$
 $$
 
 
+
 Now this term is called the Variational Lower Bound/Evidence Lower Bound on  $P(X)$. We can rewrite the variational lower bound as follows:
+
 
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -165,8 +173,9 @@ L(q) =\; & \int q(z)log(\frac{P(X,Z)}{q(Z)})\\
 \end{equation}
 $$
 
-Our objective has now changed  to maximizing the variational lower bound $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ with respect to $$q(z)$$.
 
+
+Our objective has now changed  to maximizing the variational lower bound $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ with respect to $$q(z)$$.
 
 $$
 \begin{equation}
@@ -188,9 +197,9 @@ The basic idea behind VAE is that, we want to map the given data to a hidden spa
 
 Since we want a continuous manifold, let's assume that the mapped data points in hidden space are distributed according to distribution $$P(Z)$$. And given a hidden vector $$Z=z$$, the data point in original space is distributed as $$P(X/Z=z)$$. Now we need to infer the posterior distribution $$P(Z/X)$$. 
 
-Since, we have discussed above that inferring true posterior is intractable, we approximate true posterior using a distribution $$q(Z/X)$$.
+We have discussed above that inferring true posterior is intractable, therefore we approximate true posterior using a distribution $$q(Z/X)$$.
 
-Now where does the neural network part comes in?
+Now where does the neural network part comes in?<br>
 Neural Network at its core is function approximators and probability distributions are basically functions of random variables(with some constraints), therefore we can use Neural Networks to approximate these probability distributions by approximating the parameters of the distributions.
 
 1. In general, we know what  $$P(Z)\;\text{and}\; P(X/Z)$$ are. Let $$P(Z)$$ be a $$\text {normal distribution}$$ with $$mean=0\;and\; variance=1$$. (Choosing $$P(Z)$$ and $$Q(Z/X)$$ to be a $$\text {normal distributions}$$, allows us to solve $$KLDivergence$$ term i.e. ($$KL(q(Z)\|P(Z)$$) in closed form, though we could have chosen some other distribution as well.)
@@ -201,7 +210,11 @@ Neural Network at its core is function approximators and probability distributio
 
 We will now write the closed form expressions for our objective functions. But before moving towards that, let's make sure we understand the neural network architecture completely.
 
+
+
 <center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/vae-gaussian.png"></center>
+
+
 
 
 
@@ -223,6 +236,7 @@ Now, we have understood how variational autoencoders work. However, the objectiv
 
 The VAE objective function can be written as follows:
 
+
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
@@ -234,9 +248,12 @@ L(\phi, \theta) & = \underset{\theta, \phi}{max}\; \E_{z\sim q_\theta(Z/x)}log(P
 $$
 
 
+
 Here, the first term is called the reconstruction loss and the second term acts as a regularizer.
 
-- Let's first look at the $$Kl Divergence$$ term.                                                                                                                                                                
+- Let's first look at the $$Kl Divergence$$ term. 
+
+  ​                                                                                                                                                               
 
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -255,7 +272,9 @@ $$
 
 We have now simplified the $$KlDivergence$$ term in our objective function. We can now easily take derivatives with respect to $$\phi$$ ,the weights of the encoder neural network. It is important to note here that the $$KL Divergence$$ term is only dependent on the weights of &nbsp;&nbsp;&nbsp;the encoder network and not the decoder network.
 
-- Let's now simplify the reconstruction loss term. Here, I have assumed that $$P_\theta(X/Z)$$ follows a $$\text{normal distribution}$$ with $$mean$$$ $$f_\theta(z)$$ determined by the decoder network and $$variance$$ equal to 1.
+- Let's now simplify the reconstruction loss term. Here, I have assumed that $$P_\theta(X/Z)$$ follows a $$\text{normal distribution}$$ with $$mean$$ $$f_\theta(z)$$ determined by the decoder network and $$variance$$ equal to 1.
+
+  
 
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
@@ -279,6 +298,4 @@ Since we cannot calculate expectation, we approximated it using Monte Carlo Samp
 ### 8.2) Visualisation 2: Variation with respect to the dimension of the latent space.
 
 ### 8.3) Visualisation 3 : Variation in latent space and generated samples by considering different loss terms.
-
-### 
 
