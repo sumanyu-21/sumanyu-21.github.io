@@ -278,6 +278,7 @@ defaults:
     values:
       layout: single
       author_profile: true
+      class: wide
       read_time: true
       comments: true
       share: true
@@ -289,7 +290,6 @@ defaults:
       type: pages
     values:
       layout: single
-      classes: wide
       author_profile: true
      
 
