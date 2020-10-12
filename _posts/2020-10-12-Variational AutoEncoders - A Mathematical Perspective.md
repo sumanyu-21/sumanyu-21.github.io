@@ -115,6 +115,8 @@ Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
 ### 4.2) Lower Bound on $$P(Z/X)$$
 
 
+
+
 We want to minimize the $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
 
 
@@ -139,9 +141,10 @@ log(P(X)) = D_{KL}(q(Z) || P(Z/X)) + \int q(z)log(\frac{P(X,Z)}{q(Z)})
 $$
 
 
-Hello My name is Sumanyu.
-Now,  $$log(P(X))$$  is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)||P(Z/X))$$ , we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ . Since $$KL$$ is always positive, therefore,
 
+
+
+Now,  $$log(P(X))$$  is constant(as it is given to us, though we don't know it). The first term in above equation is the quantity that we wanted to minimize. In order to minimize $$KL(q(Z)||P(Z/X))$$ , we can instead maximize the second term in the above expression i.e. $$\int q(z)log(\frac{P(X,Z)}{q(Z)})$$ . Since $$KL$$ is always positive, therefore,
 $$
 \begin{equation}
 \int q(z)log(\frac{P(X,Z)}{q(Z)})\leq log(P(X))
