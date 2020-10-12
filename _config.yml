@@ -15,9 +15,9 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Sumanyu Garg"
+title                    : "Home"
 title_separator          : "-"
-subtitle                 : "AI Researcher"
+subtitle                 : ""
 name                     : "Sumanyu Garg"
 description              : #""
 url                      : "https://sumanyu-21.github.io"
@@ -93,7 +93,7 @@ analytics:
 # Site Author
 author:
   name             : "Sumanyu Garg"
-  avatar           : "/Images/AI.jpg"
+  avatar           : "/Images/Avatar.jpg"
   bio              : "Posts on Machine Learning and Reinforcement Learning."
   location         : "San Jose, CA"
   email            : "sumgarg@iu.edu"
@@ -144,10 +144,7 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "sumgarg@iu.edu"
-
+ 
 
 # Reading Files
 include:

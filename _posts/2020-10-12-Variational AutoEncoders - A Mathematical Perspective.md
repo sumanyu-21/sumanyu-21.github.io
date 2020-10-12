@@ -1,15 +1,19 @@
 ---
-title: ""
+title: "Variational Autoencoders: A Mathematical Perspective."
 date: 2020-10-12
 tags: [Variational Inference, Variational AutoEncoders, AutoEncoders]
-#header:
-  #image: "/Images/"AI.jpg"
-excerpt: "VAE" 
+header:
+  image: "/Images/VariationalAutoencoder-A Mathematical Perspective/VAE.jpg"
+excerpt: "In this post we will learn following things:
+
+ - How are Variational Autoencoders different from standard autoencoders?
+ - Details on the loss function of Variational Autoencoders.
+ - Visualizations of the latent space as we vary different parameters." 
 mathjax: "true"
 
 ---
 
-# Variational Autoencoders: A Mathematical Perspective.
+
 
 ## 1) Outline
 
@@ -68,7 +72,7 @@ The encoder network just maps each vector $${x}$$​ to some location in latent 
 
 
 
-<center><img src="{{ site.url }}/Images/Discontinuous Manifold.PNG"></center>
+<center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/Discontinuous Manifold.PNG"></center>
 
 
 
@@ -88,7 +92,7 @@ In order to understand the variational autoencoders in depth, we will begin with
 
 Consider the following setup with 2 random variables $$z(hidden)$$ and $$x(observed)$$ where $$z$$ influences the outcome $$x$$. A common problem in Bayesian Networks or probabilistic graphical models is to infer the posterior distribution of latent variable z. 
 
-<center><img src="{{ site.url }}/Images/Basic PGM.PNG"></center>
+<center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/Basic PGM.PNG"></center>
 
 
 $$
@@ -100,7 +104,7 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 1. Markov Chain Monte Carlo (MCMC) - MCMC approach generates samples from the unnormalized $$P(Z/X)$$ which in turn makes the samples unbiased. However, we need a lot of samples to approximate $$P(Z/X)$$.
 2. Variational Inference - Variational Inference approach approximates $$P(Z/X)$$ using another distribution $$q(z)$$ where $$q(z)$$ belongs to some set of distributions $$Q$$. This approach results in biased samples. However it is much faster and scalable to highly complex distributions $$P(Z/X)$$.
 
-<center><img src="{{ site.url }}/Images/MCMCvsVI.PNG"></center>
+<center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/MCMCvsVI.PNG"></center>
 
 *(Note: I will discuss about MCMC and Variational Inference in more details in another post.)*
 
@@ -115,7 +119,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
-<center><img src="{{ site.url }}/Images/KL.PNG"></center>
+<center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/KL.PNG"></center>
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
 
