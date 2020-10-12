@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /Posts/
-title: "Machine Learning Posts by Tags"
+title: "All my Posts by Tags"
 author_profile: true
 header:
   image: "/Images/Blogs.jpg"	
