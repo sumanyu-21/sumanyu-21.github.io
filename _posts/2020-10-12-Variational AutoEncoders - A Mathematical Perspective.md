@@ -114,7 +114,7 @@ Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
 
-Hello My name is Sumanyu. We want to minimize the  $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
+Hello My name is Sumanyu. We want to minimize the \\{(KL(q(Z)||P(Z/X))}\\ . Let's try to rewrite this KL Divergence term.
 
 We want to minimize the  $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term. 
 
@@ -137,7 +137,6 @@ $$
 log(P(X)) = D_{KL}(q(Z) || P(Z/X)) + \int q(z)log(\frac{P(X,Z)}{q(Z)})
 \end{equation}
 $$
-
 
 
 
