@@ -68,7 +68,7 @@ The encoder network just maps each vector $${x}$$​ to some location in latent 
 
 
 
-<center><img height = 250 src=""{{ site.url }}{{ site.baseurl }}\Images\Discontinuous Manifold.png"></center>
+<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}\Images\Discontinuous Manifold.png"></center>
 
 
 
@@ -115,7 +115,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
-<center><img height = 250 src="\Images\KL.png"></center>
+<center><img height = 250 src="{{ site.url }}{{ site.baseurl }}\Images\KL.png"></center>
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
 
