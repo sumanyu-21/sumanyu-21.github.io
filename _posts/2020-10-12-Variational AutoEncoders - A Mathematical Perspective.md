@@ -102,7 +102,7 @@ Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL 
 
 
 
-Hello My name is Sumanyu.
+Hello My name is Sumanyu. 
 
 Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q||P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P||q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
 
@@ -116,9 +116,7 @@ Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
 
-Hello My name is Sumanyu. 
-
-We want to minimize the $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
+Hello My name is Sumanyu. We want to minimize the  $$KL(q(Z)||P(Z/X))$$ . Let's try to rewrite this KL Divergence term.
 
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
