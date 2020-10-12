@@ -27,7 +27,7 @@ Standard Autoencoders were designed for compressing the data into a smaller dime
 <h3>
 <center>AutoEncoder Architecture</center>
 </h3>
-<center><img src="https://lilianweng.github.io/lil-log/assets/images/autoencoder-architecture.png" height="200" width="250" /></center>
+<center><img src="https://lilianweng.github.io/lil-log/assets/images/autoencoder-architecture.png" height="500" width="500" /></center>
 
 
 
@@ -212,7 +212,7 @@ We will now write the closed form expressions for our objective functions. But b
 
 
 
-<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/vae-gaussian.png" height="200" width="250" /></center>
+<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/vae-gaussian.png" height="500" width="500" /></center>
 
 
 
@@ -228,7 +228,7 @@ The setting which I have explained above approximates mean $$\mu$$ and standard 
 
 Instead of sampling $$z$$ directly from $$\text{normal distribution}$$ $$z^{i}\sim\;N(Z/\mu, \sigma)$$, we instead sample noise from $$\epsilon^{i}\sim N(0,I)$$ and transform the  noise $$\epsilon^{i}$$ to hidden vector $$z^{i}$$. This shifts the stochastic nature of sampling to sampling from a fixed distribution through which we wouldn't have to backpropagate.
 
-<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/reparameterization-trick.png" height="200" width="250" /></center>
+<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/reparameterization-trick.png" height="500" width="500" /></center>
 
 ## 7) Writing the loss function in closed form 
 
