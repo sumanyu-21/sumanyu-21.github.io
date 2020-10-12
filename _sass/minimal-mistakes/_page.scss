@@ -36,16 +36,9 @@ body {
 }
 
 .page {
-  @include breakpoint($large) {
-    
-    width: calc(100% - #{$right-sidebar-width-narrow});
-   
-  }
-
-  @include breakpoint($x-large) {
-    width: calc(100% - #{$right-sidebar-width});
+  width: calc(100% - #{$right-sidebar-width-narrow});
   
-  }
+  
 
   .page__inner-wrap {
     float: left;
