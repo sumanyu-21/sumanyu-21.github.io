@@ -63,7 +63,7 @@ and can also be recovered back in original space.
 ## 3) Limitations of AutoEncoders
 
 The primary purpose of autoencoders is to compress a given vector to a lower dimensional hidden space in an unsupervised manner while preserving much of the information contained.
-However, if we take any arbitrary vector from the hidden space and try to decode it using the decoder, then most likely we will simply be generating a noise. This is because the ***manifold mapping found out by the encoder network is not smooth*** **(*Note: Our optimization problem had no constraint to keep the hidden manifold smooth or continuous)*.** The encoder network just maps each vector $${x}$$ to some location in latent space. Below figure shows the 2 dimensional latent space for MNIST Dataset. We can see that transition between different regions in the space is not continuous. Therefore, when we sample a random point from this hidden space, it will most likely correspond to a noisy point in original space.
+However, if we take any arbitrary vector from the hidden space and try to decode it using the decoder, then most likely we will simply be generating a noise. This is because the manifold mapping found out by the encoder network is not smooth *(Note: Our optimization problem had no constraint to keep the hidden manifold smooth or continuous)*. The encoder network just maps each vector {x}​ to some location in latent space. Below figure shows the 2 dimensional latent space for MNIST Dataset. We can see that transition between different regions in the space is not continuous. Therefore, when we sample a random point from this hidden space, it will most likely correspond to a noisy point in original space.
 
 <center><img src="\Images\Discontinuous Manifold.png"></center>
 
@@ -100,10 +100,10 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 
 Let's discuss the variational inference approach in some more detail.
 We want to find out an approximate distribution $${q(Z)}$$ which is as similar to $$P(Z/X)$$. One way to measure the similarity between $$q(z)$$ and $$P(Z/X)$$ is to minimize the $$KL Divergence$$ between these 2 distributions.
-Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q||P)$$ and not $$KL(P||q)$$?<br><br>
+Note: We minimize $$KL(q(Z)||P(Z/X))$$ and not $$KL(P(Z/X)||q(Z))$$. Since $$KL Divergence$$ is asymmetric, the 2 approaches will result in different $$q(z)$$. Then why do we choose to minimize $$KL(q||P)$$ and not $$KL(P||q)$$?
 
 Suppose, we restrict $$q(Z)$$ to be belonging to a family of normal distributions $$Q$$ , then $$q(Z)$$ will be a unimodal distribution. Now, when we try to minimize $$KL(q||P)$$, then the resultant $$q(Z)$$ will be  a distribution which approximates one mode of $$P(Z/X)$$ very well however not the others. In case, we minimize $$KL(P||q)$$, then the resultant $$q(z)$$ will span across different modes of $$P(Z/X)$$. When $$P(Z/X)$$ is highly complex multimodal distribution, then it is better to approximate one mode in a good way rather than focusing on every mode(which essentially will result in a flat $$q(Z)$$). 
-Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.<br><br>
+Therefore, we try to minimize $$KL(q||P)$$ and not the other way around.
 
 <center><img height = 250 src="\Images\KL.png"></center>
 
