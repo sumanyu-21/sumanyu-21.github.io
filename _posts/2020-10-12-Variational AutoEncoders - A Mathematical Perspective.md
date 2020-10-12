@@ -42,13 +42,18 @@ These functions are not some arbitrary functions and will depend on the kind of 
 
 Our objective will be to make these 2 vectors as identical to each other as possible. Therefore our optimal functions $${g_\phi(x)}$$ and $${f_\theta(z)}$$  will be those which minimizes the distance between these 2 vectors. <br>
 
-$$\begin{equation}
+
+
+
+$$
+\begin{equation}
 \begin{split}
 \phi^{*}, \theta^{*} 
 & = min_{\theta,\phi}\sum_{i=1}^{i=N}{||f_\theta(g_\phi(x^{(i)}))-x^{(i)}||^2}\\
 & = min_{\theta,\phi}\sum_{i=1}^{i=N}{||x^{'(i)}-x^{(i)}||^2}
 \end{split}
-\end{equation}$$
+\end{equation}
+$$
 
 
 <br>
@@ -206,7 +211,6 @@ Here, the first term is called the reconstruction loss and the second term acts 
 
 - Let's first look at the $$Kl Divergence$$ term.                                                                                                                                                                
 
-
 $$\DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
 \begin{split}
@@ -221,7 +225,7 @@ $$\DeclareMathOperator{\E}{\mathbb{E}}
 We have now simplified the $$KlDivergence$$ term in our objective function. We can now easily take derivatives with respect to $$\phi$$ ,the weights of the encoder neural network. It is important to note here that the $$KL Divergence$$ term is only dependent on the weights of &nbsp;&nbsp;&nbsp;the encoder network and not the decoder network.
 
 - Let's now simplify the reconstruction loss term. Here, I have assumed that $$P_\theta(X/Z)$$ follows a $$\text{normal distribution}$$ with $$mean$$$ $$f_\theta(z)$$ determined by the decoder network and $$variance$$ equal to 1.
- 
+
 $$\DeclareMathOperator{\E}{\mathbb{E}}
   \begin{equation}
   \begin{split}
@@ -232,7 +236,7 @@ $$\DeclareMathOperator{\E}{\mathbb{E}}
   &\text{and} \;\;\;\;\;\epsilon^{i}\sim N(0,I)
   \end{split}
   \end{equation}$$
- 
+
   Since we cannot calculate expectation, we approximated it using Monte Carlo Samples.
 
   Now, we can easily take derivatives of this term with respect to $$\theta$$, weights of the decoder neural network. Again, we can note that this time the reconstruction loss term is only dependent on the encoder and not the decoder.
