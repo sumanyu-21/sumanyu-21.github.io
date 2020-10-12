@@ -3,7 +3,7 @@ title: "Variational Autoencoders: A Mathematical Perspective."
 date: 2020-10-12
 tags: [Variational Inference, Variational AutoEncoders, AutoEncoders]
 header:
-  image: "/Images/VariationalAutoencoder-A Mathematical Perspective/VAE.jpg"
+  image: #"/Images/VariationalAutoencoder-A Mathematical Perspective/VAE.jpg"
 excerpt: "In this post we will learn following things:
 
  - How are Variational Autoencoders different from standard autoencoders?
