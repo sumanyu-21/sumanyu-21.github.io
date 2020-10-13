@@ -122,7 +122,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
-<div align="center"><b>Different $$Q(Z)$$ depending on which form of KL Divergence we minimize</b></div>
+<div align="center"><b>Different Q(Z) depending on which form of KL Divergence we minimize</b></div>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/KL.PNG"></center>
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
@@ -341,21 +341,21 @@ where I consider different values of $$\alpha$$ and $$\beta$$ and see how it aff
 
 Fig. 1 and Fig. 2 in below plots was generated in the same way as explained above. For Fig. 3 , I took $$1000$$ data points from the test set and visualized how were they mapped in the latent space.
 
-<div align="center"><b>Considering only Reconstruction Loss term $$(\alpha=1,\beta=0)$$</b></div>
+<div align="center"><b>Considering only Reconstruction Loss term</b></div>
 
-<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_1.PNG" ></center>
+<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_1.PNG" height="1000" width="1000" /></center>
 
 1. Let's first consider, what happens when only the Reconstruction Loss term is used $$(\alpha=1, \beta=0)$$ as the VAE Loss function. In this case, we are essentially treating VAE as simple autoencoder which just tries to minimize the errors between generated samples. In this case our VAE Loss becomes almost same as the Autoencoder loss, except the fact that each data point is mapped in such a way that the distribution of points in hidden space will be normal. Also, we can expect that different data points(different digits) will be mapped to different gaussians in the hidden space. Note- In this case, we had no constraint to keep the manifold continuous. 
 
-   <div align="center"><b>Considering only Reconstruction Loss term $$(\alpha=0,\beta=1)$$</b></div>
+   <div align="center"><b>Considering only Reconstruction Loss term</b></div>
 
-   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_2.PNG" ></center>
+   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_2.PNG" height="1000" width="1000" / ></center>
 
 2. In second case, we will consider only the Regularizer term$$(\alpha=0,\beta=1)$$ . In this case, we are not doing anything useful. When we don't consider the Reconstruction Loss term,we are essentially not training our decoder at all. We are just generating random samples from $$N\sim(0,1)$$ and passing mapping it to some arbitrary space using random decoder weights. Therefore we observe noise in fig1 and fig2. Also, since we are just focusing on making posterior $$q(Z/x)$$ to be exactly same as $$P(Z)$$, we are not retaining any useful information during our mapping. Therefore, we can see all test data points being mapped to $$ N(0,1)$$ in hidden space without any meaningful structure.
 
-   <div align="center"><b>Considering only Reconstruction Loss term</b> $$(\alpha=1,\beta=1)$$</div>
+   <div align="center"><b>Considering only Reconstruction Loss term</b></div>
 
-   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_3.PNG" ></center>
+   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_3.PNG" height="1000" width="1000" /></center>
 
 3. In third case, we consider both the terms and the results are as we expected. A continuous manifold in hidden space(fig.1) and when test data points are mapped to latent space we can observe continuous transition between different regions(fig. 3)
 
