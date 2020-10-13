@@ -303,7 +303,7 @@ Since we cannot calculate expectation, we approximated it using Monte Carlo Samp
 
 In this section, we will visualize the 2d latent space and also see how the latent space manifold changes as we change the loss term. 
 
-Note: For the purposes of this post, I have trained a simple variational autoencoder on MNIST dataset .The code for all the results can be found on my GitHub account [VAE](https://github.com/sumanyu-21/Posts-Codes/tree/main/Variational%20Autoencoders-%20From%20a%20Mathematical%20Perspective).
+Note: For the purposes of this post, I have trained a simple variational autoencoder on MNIST dataset .The code for all the results can be found on my GitHub account [VAE](https://github.com/sumanyu-21/sumanyu-21.github.io/tree/main/Codes/Variational%20Autoencoders%20-%20%20A%20Mathematical%20Perspective).
 
 ### 8.1) Visualization 1: Continuous  Manifold in Hidden Space.
 
