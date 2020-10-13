@@ -31,7 +31,7 @@ Standard Autoencoders were designed for compressing the data into a smaller dime
 <h3>
 <center>AutoEncoder Architecture</center>
 </h3>
-<center><img src="https://lilianweng.github.io/lil-log/assets/images/autoencoder-architecture.png" height="700" width="800" /></center>
+<center><img src="https://lilianweng.github.io/lil-log/assets/images/autoencoder-architecture.png" height="600" width="650" /></center>
 
 
 
@@ -60,7 +60,7 @@ $$
 $$
 
 
-Once, we have trained our autoencoder network to find optimal weights $${\phi^{*}}$$ and $${\theta^*}$$, we can encode a new data point in the same latent space and can also be recovered back in original space.
+Once, we have trained our autoencoder network to find optimal weights $${\phi^{*}}$$ and $${\theta^*}$$, we can encode a new data point in the same latent space and can also recover it back in the original space.
 
 ## 3) Limitations of AutoEncoders
 
@@ -72,6 +72,7 @@ The encoder network just maps each vector $${x}$$​ to some location in latent 
 
 
 
+<center><b>Discontinuous Manifold in Hidden Space</b></center>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/Discontinuous Manifold.PNG"></center>
 
 
@@ -92,6 +93,7 @@ In order to understand the variational autoencoders in depth, we will begin with
 
 Consider the following setup with 2 random variables $$z(hidden)$$ and $$x(observed)$$ where $$z$$ influences the outcome $$x$$. A common problem in Bayesian Networks or probabilistic graphical models is to infer the posterior distribution of latent variable z. 
 
+<center><b>Simple Probabilistic Graphical Model</b></center>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/Basic PGM.PNG"></center>
 
 
@@ -104,6 +106,7 @@ However, computing $$P(X)$$ in above equation is intractable. This, means we can
 1. Markov Chain Monte Carlo (MCMC) - MCMC approach generates samples from the unnormalized $$P(Z/X)$$ which in turn makes the samples unbiased. However, we need a lot of samples to approximate $$P(Z/X)$$.
 2. Variational Inference - Variational Inference approach approximates $$P(Z/X)$$ using another distribution $$q(z)$$ where $$q(z)$$ belongs to some set of distributions $$Q$$. This approach results in biased samples. However it is much faster and scalable to highly complex distributions $$P(Z/X)$$.
 
+<center><b>Difference between MCMC and Variational Inference</b></center>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/MCMCvsVI.PNG"></center>
 
 *(Note: I will discuss about MCMC and Variational Inference in more details in another post.)*
@@ -119,6 +122,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
+<center><b>Difference in resultant $$Q(Z)$$ depending on which form of $$D_{KL}$$ we try to minimize</b></center>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/KL.PNG"></center>
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
@@ -216,7 +220,7 @@ We will now write the closed form expressions for our objective functions. But b
 
 
 
-<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/vae-gaussian.png" height="700" width="800" /></center>
+<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/vae-gaussian.png" height="600" width="650" /></center>
 
 
 
@@ -232,7 +236,7 @@ The setting which I have explained above approximates mean $$\mu$$ and standard 
 
 Instead of sampling $$z$$ directly from $$\text{normal distribution}$$ $$z^{i}\sim\;N(Z/\mu, \sigma)$$, we instead sample noise from $$\epsilon^{i}\sim N(0,I)$$ and transform the  noise $$\epsilon^{i}$$ to hidden vector $$z^{i}$$. This shifts the stochastic nature of sampling to sampling from a fixed distribution through which we wouldn't have to backpropagate.
 
-<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/reparameterization-trick.png" height="700" width="800" /></center>
+<center><img height = 250 src="https://lilianweng.github.io/lil-log/assets/images/reparameterization-trick.png" height="600" width="650" /></center>
 
 ## 7) Writing the loss function in closed form 
 
@@ -307,9 +311,9 @@ Let's first visualize the 2 dimensional latent space.
 
 
 
-<div align="center"><b>Continuous Manifold.</b></div>
+<div align="center"><b>Continuous Manifold in Hidden Space</b></div>
 
-<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz1.PNG" height="700" width="800" /></center>
+<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz1.PNG"></center>
 
 For fig2, I have sampled $$20X20$$ random points from $$N\sim(0,1)$$ . When we map these points back to the original space, we can see that each of those points seem to represent an image similar to that from the training set. It is important to note here that these are entirely new images generated by the network and are not part of the training set.  
 
@@ -321,7 +325,7 @@ Like in previous visualization, I have sampled random points from univariate nor
 
 <div align="center"><b>Variation in generated samples as we change hidden space dimensionality</b></div>
 
-<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz2.PNG" height="700" width="800" /></center>
+<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz2.PNG" ></center>
 
 We can observe that, when the hidden dimensionality is 2, the generated samples are quite blurred. As we increase the dimensionality to 10, the generated samples are more sharp. This is due to the fact that when we mapped our data in higher dimension, our network was able to learn some other properties of the data such as sharpness rather than just learning orientation of edges. As we increase the dimensionality further, we can observe that the generated samples contain many points which are hard to decode. This means, that when dimensionality is increased to 40, our decoder network is not able to decode the hidden vectors properly. It maps hidden data points to locations in original space which do not correspond to any digits. If we increase the number of layers in our Neural Network, we can generate extremely good samples even with high dimensional latent space.
 
@@ -339,19 +343,19 @@ Fig. 1 and Fig. 2 in below plots was generated in the same way as explained abov
 
 <div align="center"><b>Considering only Reconstruction Loss term $$(\alpha=1,\beta=0)$$</b></div>
 
-<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_1.PNG" height="700" width="800" /></center>
+<center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_1.PNG" ></center>
 
 1. Let's first consider, what happens when only the Reconstruction Loss term is used $$(\alpha=1, \beta=0)$$ as the VAE Loss function. In this case, we are essentially treating VAE as simple autoencoder which just tries to minimize the errors between generated samples. In this case our VAE Loss becomes almost same as the Autoencoder loss, except the fact that each data point is mapped in such a way that the distribution of points in hidden space will be normal. Also, we can expect that different data points(different digits) will be mapped to different gaussians in the hidden space. Note- In this case, we had no constraint to keep the manifold continuous. 
 
    <div align="center"><b>Considering only Reconstruction Loss term $$(\alpha=0,\beta=1)$$</b></div>
 
-   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_2.PNG" height="700" width="800" /></center>
+   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_2.PNG" ></center>
 
 2. In second case, we will consider only the Regularizer term$$(\alpha=0,\beta=1)$$ . In this case, we are not doing anything useful. When we don't consider the Reconstruction Loss term,we are essentially not training our decoder at all. We are just generating random samples from $$N\sim(0,1)$$ and passing mapping it to some arbitrary space using random decoder weights. Therefore we observe noise in fig1 and fig2. Also, since we are just focusing on making posterior $$q(Z/x)$$ to be exactly same as $$P(Z)$$, we are not retaining any useful information during our mapping. Therefore, we can see all test data points being mapped to $$ N(0,1)$$ in hidden space without any meaningful structure.
 
    <div align="center"><b>Considering only Reconstruction Loss term $$(\alpha=1,\beta=1)$$</b></div>
 
-   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_3.PNG" height="700" width="800" /></center>
+   <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_3.PNG" ></center>
 
 3. In third case, we consider both the terms and the results are as we expected. A continuous manifold in hidden space(fig.1) and when test data points are mapped to latent space we can observe continuous transition between different regions(fig. 3)
 
