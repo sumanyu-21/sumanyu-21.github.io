@@ -122,7 +122,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
-<center><b>Difference in resultant $$Q(Z)$$ depending on which form of $$D_{KL}$$ we try to minimize</b></center>
+<center><b>Different $$Q(Z)$$ depending on which form of KL Divergence we minimize</b></center>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/KL.PNG"></center>
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
