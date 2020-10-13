@@ -122,7 +122,7 @@ Therefore, we try to minimize $$KL(q\|P)$$ and not the other way around.
 
 
 
-<center><b>Different $$Q(Z)$$ depending on which form of KL Divergence we minimize</b></center>
+<div align="center"><b>Different $$Q(Z)$$ depending on which form of KL Divergence we minimize</b></div>
 <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/KL.PNG"></center>
 
 ### 4.2) Lower Bound on $$P(Z/X)$$
@@ -353,7 +353,7 @@ Fig. 1 and Fig. 2 in below plots was generated in the same way as explained abov
 
 2. In second case, we will consider only the Regularizer term$$(\alpha=0,\beta=1)$$ . In this case, we are not doing anything useful. When we don't consider the Reconstruction Loss term,we are essentially not training our decoder at all. We are just generating random samples from $$N\sim(0,1)$$ and passing mapping it to some arbitrary space using random decoder weights. Therefore we observe noise in fig1 and fig2. Also, since we are just focusing on making posterior $$q(Z/x)$$ to be exactly same as $$P(Z)$$, we are not retaining any useful information during our mapping. Therefore, we can see all test data points being mapped to $$ N(0,1)$$ in hidden space without any meaningful structure.
 
-   <div align="center"><b>Considering only Reconstruction Loss term $$(\alpha=1,\beta=1)$$</b></div>
+   <div align="center"><b>Considering only Reconstruction Loss term</b> $$(\alpha=1,\beta=1)$$</div>
 
    <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_3.PNG" ></center>
 
