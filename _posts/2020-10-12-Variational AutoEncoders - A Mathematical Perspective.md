@@ -349,13 +349,13 @@ Fig. 1 and Fig. 2 in below plots was generated in the same way as explained abov
 
 1. Let's first consider, what happens when only the Reconstruction Loss term is used $$(\alpha=1, \beta=0)$$ as the VAE Loss function. In this case, we are essentially treating VAE as simple autoencoder which just tries to minimize the errors between generated samples. In this case our VAE Loss becomes almost same as the Autoencoder loss, except the fact that each data point is mapped in such a way that the distribution of points in hidden space will be normal. Also, we can expect that different data points(different digits) will be mapped to different gaussians in the hidden space. Note- In this case, we had no constraint to keep the manifold continuous. 
 
-   <div align="center"><b>Considering only Reconstruction Loss term</b></div>
+   <div align="center"><b>Considering only KL Divergence Term</b></div>
 
    <center><img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_2.PNG" height="1000" width="1000" /></center>
 
 2. In second case, we will consider only the Regularizer term$$(\alpha=0,\beta=1)$$ . In this case, we are not doing anything useful. When we don't consider the Reconstruction Loss term,we are essentially not training our decoder at all. We are just generating random samples from $$N\sim(0,1)$$ and passing mapping it to some arbitrary space using random decoder weights. Therefore we observe noise in fig1 and fig2. Also, since we are just focusing on making posterior $$q(Z/x)$$ to be exactly same as $$P(Z)$$, we are not retaining any useful information during our mapping. Therefore, we can see all test data points being mapped to $$ N(0,1)$$ in hidden space without any meaningful structure.
 
-   <div align="center"><b>Considering only Reconstruction Loss term</b></div>
+   <div align="center"><b>Considering bothReconstruction Loss and KL Divergence Term</b></div>
 
    <center><img src=img src="{{ site.url }}/Images/VariationalAutoencoder-A Mathematical Perspective/viz3_3.PNG" height="1000" width="1000" /></center>
 
