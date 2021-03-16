@@ -97,7 +97,7 @@ Deep Reinforcement Learning uses something called as $$experience\;replay$$ to s
 
 
 <div align="center"><b>DQN Algorithm</b></div>
-<center><img src="{{site.url}}/Images/Playing Atari Through Deep Reinforcement Learning/Algorithm.JPG"></center>
+<center><img src="{{site.url}}/Images/Playing Atari Through Deep Reinforcement Learning/Algorithm.jpg"></center>
 
 
 
