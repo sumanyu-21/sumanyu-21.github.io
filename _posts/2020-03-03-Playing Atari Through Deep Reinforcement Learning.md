@@ -126,7 +126,7 @@ I have conducted experiments only on the *Space Invaders* environment due to lim
 ## 6) Results
 
 <div align="center"><b>Results</b></div>
-<center><img src="{{site.url}}/Images/Playing Atari Through Deep Reinforcement Learning/results.PNG"></center>
+<center><img src="{{site.url}}/Images/Playing Atari Through Deep Reinforcement Learning/results.png"></center>
 
 $$Figure 1$$ shows the results during training of the network. We can see from the plots that the agent is learning to behave in the environment in order to maximize its total expected reward.
 
