@@ -74,7 +74,7 @@ $$
 
 
 
-where $$y_i=Q^*(s,a) =\E_{s'\sim \mathcal{E}}\;\left[r+ \gamma\underset{a'}{max}Q^*(s',a')|s,a \right]$$is the target for iteration $$i$$ and $$\rho(s,a)$$ is a probability distribution over sequences s and actions a that the authors of the original paper referred to as behavior distribution. One important thing to note is that target depends on the network weights which is in contrast with what the target is in supervised learning, which are fixed for all iterations during training. Now, if we differentiate the loss function with respect to the weights, then the gradient can be written as follows. 
+where  $${y_i=Q^*(s,a) =\E_{s'\sim \mathcal{E}}\;\left[r+ \gamma\underset{a'}{max}Q^*(s',a')|s,a \right]}$$is the target for iteration $$i$$ and $$\rho(s,a)$$ is a probability distribution over sequences s and actions a that the authors of the original paper referred to as behavior distribution. One important thing to note is that target depends on the network weights which is in contrast with what the target is in supervised learning, which are fixed for all iterations during training. Now, if we differentiate the loss function with respect to the weights, then the gradient can be written as follows. 
 
 
 $$
