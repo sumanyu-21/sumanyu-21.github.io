@@ -23,17 +23,24 @@ Learning control policies directly from images or some other high dimensional se
 
 ## 2) Background
 
-In this project, I will be experimenting with Atari environment [3], specifically the *Space Invaders*  environment. (However, the implementation is well organized to be able to tackle other environments as well with minor modifications that will be needed as per the dynamics of different environments). In general, any reinforcement learning problem with single agent consists of an environment, and at each time step, the agent selects an action at from the agent’s action space. (There are 6 actions in Space Invaders environment, 
+In this project, I will be experimenting with Atari environment [3], specifically the *Space Invaders*  environment. (However, the implementation is well organized to be able to tackle other environments as well with minor modifications that will be needed as per the dynamics of different environments). In general, any reinforcement learning problem with single agent consists of an environment, and at each time step, the agent selects an action at from the agent’s action space. (There are 6 actions in Space Invaders environment.
 $${0: no \; action}$$
+
 $${1: fire}$$                                                                                                                                    
+
 $${2: move\;right}$$
+
 $${3: move\;left}$$
+
 $${4: move\;right\;fire}$$
+
 $${5: move \;left \; fire}) $$
 
 The agent gets to only observe the images of the current screen frame $${x_t}$$. The The goal of the agent is to interact with the environment by selecting actions in a way that maximizes future rewards. I have considered discounted rewards such that the discounted return at time $$t$$ can be written as $${R_t = \sum_{t'=1}^{T}{\gamma^{t'-t} r_t} }$$ where T is the time-step at which the game ends. 
 
 We can also define the optimal action value function, which can be defined as the maximum expected reward achievable by following an optimal policy, using Bellman equation as follows.
+
+
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
@@ -42,7 +49,10 @@ Q^*(s,a) = \E_{s'\sim \mathcal{E}}\;\left[r+ \gamma\underset{a'}{max}Q^*(s',a')|
 $$
 
 
+
 In this project, this action value function is estimated using a neural network as a function approximator. We can use one neural network for each action or alternatively use one single neural network that will approximate the action value function for each action.
+
+
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
@@ -51,7 +61,10 @@ Q(s,a;\theta) \approx Q^*(s,a)
 $$
 
 
-This network can be trained by minimizing a sequence of loss functions $$L_i(\theta_i)$$ that changes at each iteration i.
+
+This network can be trained by minimizing a sequence of loss functions $$L_i(\theta_i)$$ that changes at each iteration $$i$$.
+
+
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
@@ -60,7 +73,10 @@ L_i(\theta_i) =\E_{s,a\sim p(.)}\;\left[(y_i - Q(s,a;\theta))^2 \right]
 $$
 
 
+
 where $$y_i=Q^*(s,a) =\E_{s'\sim \mathcal{E}}\;\left[r+ \gamma\underset{a'}{max}Q^*(s',a')|s,a \right]$$is the target for iteration $$i$$ and $$\rho(s,a)$$ is a probability distribution over sequences s and actions a that the authors of the original paper referred to as behavior distribution. One important thing to note is that target depends on the network weights which is in contrast with what the target is in supervised learning, which are fixed for all iterations during training. Now, if we differentiate the loss function with respect to the weights, then the gradient can be written as follows. 
+
+
 $$
 \DeclareMathOperator{\E}{\mathbb{E}}
 \begin{equation}
@@ -69,16 +85,19 @@ $$
 $$
 
 
+
 However, how can we compute these gradients practically? It is computationally infeasible to calculate the full gradients and hence we use stochastic gradient descent to compute them This algorithm is same as the $$Q{\text-}Learning$$ algorithm. Some important things to note are that this algorithm as $$model{\text-}free$$, which means that we don’t estimate the dynamics of the environment and instead solve directly from the samples. Another thing to note is that this algorithm is $$off{\text-}policy$$, which means it learns an optimal policy by following a $$behavior\;distribution$$. Now how to select a behavior distribution? In practice, behavior distribution is chosen to be an $$\epsilon{\text-}greedy\;strategy$$ which allows exploration by choosing the optimal action with probability $$1{\text-}\epsilon$$ and random action by probability $$\epsilon$$.
 
 
 
 ## 3) Deep Reinforcement Learning
 
-Deep Reinforcement Learning uses something called as $$experience\;replay$$ to store the agent’s experience at each time step as $$e_t = (s_t, a_t, r_t, s_{t+1})$$ in a dataset $$\mathcal{D}=e_1,...,e_N$$during each episode. The weights of the network are updated using $$Q{\text-}learning$$ updates using samples of  experience, $$e\sim\mathcal{D}$$ drawn at random from the experience replay dataset. After performing experience replay, the agent selects and executes action according to $$\epsilon{\text-}greedy\;strategy$$. This allows for the experiences to be used in many weight updates and allows for greater data efficiency. Moreover, the samples are not correlated as the correlation is broken due to randomized sampling which acts as a training dataset for updating the network. This in turn reduces the variances of the updates. The most important thing is that, when learning $$on{\text-}policy$$, the current parameters determine the next data sample that the parameters are trained on. Due to this, it is possible that the parameters might stuck in some local minima and do not converge to the desired optimal solution. Therefore, we use $$off{\text-}policy\;learning$$, which in fact becomes necessary due to the use of experience replay to update the weights and not the correlated samples. The diagram below, taken from the original paper, shows the complete algorithm.
+Deep Reinforcement Learning uses something called as $$experience\;replay$$ to store the agent’s experience at each time step as $$e_t = (s_t, a_t, r_t, s_{t+1})$$ in a dataset $$\mathcal{D}=e_1,...,e_N$$ during each episode. The weights of the network are updated using $$Q{\text-}learning$$ updates using samples of  experience, $$e\sim\mathcal{D}$$ drawn at random from the experience replay dataset. After performing experience replay, the agent selects and executes action according to $$\epsilon{\text-}greedy\;strategy$$. This allows for the experiences to be used in many weight updates and allows for greater data efficiency. Moreover, the samples are not correlated as the correlation is broken due to randomized sampling which acts as a training dataset for updating the network. This in turn reduces the variances of the updates. The most important thing is that, when learning $$on{\text-}policy$$, the current parameters determine the next data sample that the parameters are trained on. Due to this, it is possible that the parameters might stuck in some local minima and do not converge to the desired optimal solution. Therefore, we use $$off{\text-}policy\;learning$$, which in fact becomes necessary due to the use of experience replay to update the weights and not the correlated samples. The diagram below, taken from the original paper, shows the complete algorithm.
 
-<div align="center"><b>Different Q(Z) depending on which form of KL Divergence we minimize</b></div>
-<center><img src="D:\GitHub\sumanyu-21.github.io\_posts\Algorithm.jpg"></center>
+
+
+<div align="center"><b>DQN Algorithm</b></div>
+<center><img src="{{site.url}}/Images/Playing Atari Through Deep Reinforcement Learning/Algorithm.JPG"></center>
 
 
 
