@@ -1,3 +1,14 @@
+---
+title: "Playing Atari Through Deep Reinforcement Learning"
+date: 2020-03-03
+tags: [Reinforcement Learning, QLearning]
+header:
+    
+excerpt: "In this post we will implement a self learning agent capable of playing Atari Games.
+mathjax: "true"
+
+---
+
 ## Abstract
 
 In this project, I experiment with the Deep Q Networks on Atari Environment. These networks are able to learn policies from the input using reinforcement Learning. The network is trained with a variant of Q-learning, with input as raw pixels from the screen and the output is action value function which estimates future rewards for each action.
