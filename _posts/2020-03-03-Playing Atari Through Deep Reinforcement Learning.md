@@ -1,10 +1,10 @@
 ---
-title: "Playing Atari Through Deep Reinforcement Learning"
+title: "Playing Atari Through Deep Reinforcement Learning."
 date: 2020-03-03
 tags: [Reinforcement Learning, QLearning]
 header:
     
-excerpt: "In this post we will implement a self learning agent capable of playing Atari Games.
+excerpt: "In this post we will implement a self learning agent capable of playing Atari Games."
 mathjax: "true"
 
 ---
