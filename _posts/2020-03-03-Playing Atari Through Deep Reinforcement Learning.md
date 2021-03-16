@@ -125,9 +125,12 @@ I have conducted experiments only on the *Space Invaders* environment due to lim
 
 ## 6) Results
 
+<div align="center"><b>Results</b></div>
+<center><img src="{{site.url}}/Images/Playing Atari Through Deep Reinforcement Learning/results.PNG"></center>
+
 $$Figure 1$$ shows the results during training of the network. We can see from the plots that the agent is learning to behave in the environment in order to maximize its total expected reward.
 
-The plot on the left in figure 1 shows the total reward that agent is able to get during each episode. The agent manages to achieve a maximum reward of 705 at 456th episode. The  agent starts with taking random actions and gradually it starts choosing actions which lead to better states and hence better states. However, we can see lot of randomness in the total reward for an episode. This is due to the extreme stochastic nature of the $$Space\;Invaders$$ environment. In plot on the right-hand side, average rewards for past 50 episodes has been plotted. Initially, I tried to evaluate policy after 10 episodes. But this was computationally expensive. Therefore, I plotted the average reward for the last 50 episodes. Important thing to note here is that the policy is changing with each episode and therefore it is not same as evaluating policy after every few episode. Nonetheless, we can see that the as the number of episodes is increasing, the average reward is also increasing which is indicating that the agent is trying to learn the optimal policy.
+The plot on the left in $$figure 1$$ shows the total reward that agent is able to get during each episode. The agent manages to achieve a maximum reward of $$705$$ at $$456^{th}$$ episode. The  agent starts with taking random actions and gradually it starts choosing actions which lead to better states and hence better states. However, we can see lot of randomness in the total reward for an episode. This is due to the extreme stochastic nature of the $$Space\;Invaders$$ environment. In plot on the right-hand side, average rewards for past $$50$$ episodes has been plotted. Initially, I tried to evaluate policy after $$10$$ episodes. But this was computationally expensive. Therefore, I plotted the average reward for the last $$50$$ episodes. Important thing to note here is that the policy is changing with each episode and therefore it is not same as evaluating policy after every few episode. Nonetheless, we can see that the as the number of episodes is increasing, the average reward is also increasing which is indicating that the agent is trying to learn the optimal policy.
 
 
 
